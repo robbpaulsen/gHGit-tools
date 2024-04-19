@@ -7,7 +7,7 @@ A couple of tools to integrate on any project's workflow, inspired by Erik Duboi
 - core-utils
 - Github account
 - Editor of your choice
-- A very little knowledge is the shell, linux and markdow
+- A very little knowledge is the shell, linux and markdown
 
 ## Prerequisites
 
@@ -15,14 +15,24 @@ gh-cli/github-cli expects the user to already have a pre generated acces token f
 
 1. Copy paste the token in the interactive method from gh-cli
 2. Start the authentication from scratch choose "HTTPS" which will give you
-   a provisional 6 alpha numeric code from the browser and get into yourfirst-expression
-   settings account and generate the token from within and copy paste it into terminal
+   a provisional 6 alpha numeric code from the browser, get into your account
+   account settings, generate the token from there and copy paste into terminal
 3. Declare the environment variable `GH_TOKEN` or `GITHUB_TOKEN` inside your bashrc,
    zshrc, zshenv, profile or whatever config file you may use to declare your variables/aliases/path's
 
-# `setup-repoOnGit.sh`
+# Creating your github repository approach 1
+
+## `setup-repoOnGit.sh`
 
 This script will ask you for 2 parameters, the name you want to give to your project and a brief description for the README.md file
+
+# Creating your github repository approach 2
+
+## repoFrom-local.sh
+
+Approach 1 creates the repository from 0, that means you don't have a README.md, initialize a local direcotry as your git project with `git init` and or 0 commits have been made, approach 2 will create a repository taking into account the name of the directory you are in that moment and directory contains all your project files and you are all set to commit and push for the first time.
+
+#### TAKE INTO ACCOUNT THAT COMMITING SEVERAL TIMES WITHOUT PUSHING WILL EFF THE EFF-OUT OF YOUR PROJECT AND WILL HAVE A VERY BAD TIME STASHING, REBASING, MERGING AND HOOPE GOD WILL BE ON YOUR SIDE ON THAT DAY.
 
 # `setup-ssh.sh`
 
