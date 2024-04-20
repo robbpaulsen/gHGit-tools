@@ -18,29 +18,32 @@
 #tput setaf 8 = light blue
 ##################################################################################################################
 
+clear
+
 # reset - commit your changes or stash them before you merge
 # git reset --hard - personal alias - grh
-
 # https://www.git-tower.com/learn/git/faq/undo-last-commit
 
 # Revisar si hay nuevos cambios en el proyecto ya en GitHub
+tput setaf 2
 echo "Revisando si hay nuevos cambios en el sitio del proyecto"
+tput sgr0
 git pull
-
-workdir=$(pwd)
 
 # Este comando va a respaldar todo lo que eeste el directorio raiz del proyecto
 git add --all .
 
 echo ""
 echo ""
+tput setaf 3
 echo "####################################"
 echo "#    Commits concisos y utiles     #"
 echo "####################################"
+tput sgr0
 echo ""
 echo ""
 
-read input
+read -p "Escribe una breve descripcion de los cambios realizados o agregados: " input
 
 # Hacer un commit al repositorio local con un mensage conteniendo los detalles de los cambios o que se agrego
 
@@ -50,6 +53,8 @@ git commit -m "$input"
 
 git push
 
+tput setaf 3
 echo "################################################################"
 echo "##################  Finalizado el Git Push  ####################"
 echo "################################################################"
+tput sgr0

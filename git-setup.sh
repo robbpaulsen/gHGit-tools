@@ -13,35 +13,43 @@
 ##
 #########################################################################################
 
-NORMAL='\033[0m'
-YELLOW='\033[00;33m'
-CYAN='\033[00;36m'
-LRED='\033[01;31m'
-
 purl=https://github.com
-guser=robbpaulsen
 project="$(basename $(pwd))"
 
-echo -e "\n${YELLOW}[!]${NORMAL}${LRED} ESTE SCRIPT SOLO DEBE DE SER EJECUTADO UNA SOLA VEZ, AL FINAL DE SU EJECUCION \nDEJARA DE SER EJECUTABLE PARA PREVENIR ACCIDEDNTES!${NORMAL}"
+tput setaf 3
+echo -e "\n[!] ESTE SCRIPT SOLO DEBE DE SER EJECUTADO UNA SOLA VEZ, AL FINAL DE SU EJECUCION \nDEJARA DE SER EJECUTABLE PARA PREVENIR ACCIDEDNTES!"
+tput sgr0
+sleep 2
+
+get_user() {
+	echo ""
+	echo ""
+	tput setaf 2
+	read -p "Cual es tu Usuario?: " guser
+	tput sgr0
+	echo ""
+	echo ""
+}
+
+get_email() {
+	echo ""
+	echo ""
+	tput setaf 2
+	read -p "Escribe un correo para la llave: " EMAIL
+	tput sgr0
+	echo ""
+	echo ""
+}
 
 git config --global pull.rebase false
-git config --global user.name "robbpaulsen"
-git config --global user.email "pemmtest.087@gmail.com"
+git config --global user.name "$guser"
+git config --global user.email "$EMAIL"
 git config --system core.editor nvim
 git config --global push.default simple
-git remote set-url origin "$purl/$guser/$project"
+git remote set-url origin "$purl"/"$guser"/"$project"
 
-echo -e "\n\n\t${CYAN}Ya todo esta configurado${NORMAL}\n\n\t"
+tput setaf 8
+echo -e "\n\n\tYa todo esta configurado$\n\n\t"
+tput sgr0
 sleep 2 &&
 	chmod -x ./git-setup.sh
-
-# Github Authentication with github-cli
-
-#  gh auth login --with-token </path/to/token.txt
-#  # yes you actually need to leave the "less than" symbol there
-#  gh ssh-key add ~/.ssh/ authentication --title "your title" <key-file >--type
-#  gh config set git_protocol ssh --host github.com
-#  gh config set set prompt enable
-#  gh config set editor nvim
-#  gh config set pager glow
-#  gh config set browser firefox

@@ -1,3 +1,9 @@
 project-token.txt
 temp.js
 bundle.js
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
