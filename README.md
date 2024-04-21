@@ -28,7 +28,7 @@ This script will ask you for 2 parameters, the name you want to give to your pro
 
 # Creating your github repository approach 2
 
-## `repoFrom-local.sh``
+## `repoFrom-local.sh`
 
 Approach 1 creates the repository from 0, that means you don't have a README.md, initialize a local directory as your git project with `git init` and or 0 commits have been made, approach 2 will create a repository taking into account the name of the directory you are in that moment and directory contains all your project files and you are all set to commit and push for the first time.
 

@@ -212,8 +212,7 @@ just_push() {
 	${green}
 	echo -e "\n\n${sign_info} Se Actualizara el proyecto en el sitio con \nlos nuevos cambios\n\n"
 	${nc}
-	git pull
-	git push -u
+	git push
 }
 
 add_commit_push() {
