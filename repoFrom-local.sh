@@ -16,28 +16,48 @@
 
 NORMAL='\033[0m'
 YELLOW='\033[00;33m'
-CYAN='\033[00;36m'
 LRED='\033[01;31m'
 
 purl=https://github.com
-guser=robbpaulsen
-gemail=pemmtest.087@gmail.com
 project="$(basename $(pwd))"
 
-echo -e "\n${YELLOW}[!]${NORMAL}${LRED} ESTE SCRIPT SOLO DEBE DE SER USADO UNA SOLA VEZ, AL FINAL\nDEJARA DE SER EJECUTABLE PARA PREVENIR ACCIDEDNTES!${NORMAL}"
-git init
-git add .
-git config --global pull.rebase false
-git config --global user.name "$guser"
-git config --global user.email "$gemail"
-git config --system core.editor nvim
-git config --global push.default simple
-git remote set-url origin "$purl/$guser/$project"
+get_email() {
+	tput setaf 7
+	read -p "Introduce un correo para unirlo a tu llave: " EMAIL
+	tput sgr0
+}
 
-read -p "Escribe el mensaje para tu commit: " kommit
-git commit -m "$kommit"
-git push -u
+get_user() {
+	tput setaf 7
+	read -p "Cual e stu Usuario?: " guser
+	tput sgr0
+}
 
-echo -e "\n\n\t${CYAN}Ya todo esta configurado y se hizo el primer push${NORMAL}\n\n\t"
-sleep 2 &&
-	chmod -x ./repoFrom-local.sh
+get_commit() {
+	tput setaf 7
+	read -p "Escribe el mensaje para tu commit: " kommit
+	tput sgr 0
+}
+
+main() {
+	echo -e "\n${YELLOW}[!]${NORMAL}${LRED} ESTE SCRIPT SOLO DEBE DE SER USADO UNA SOLA VEZ, AL FINAL\nDEJARA DE SER EJECUTABLE PARA PREVENIR ACCIDEDNTES!${NORMAL}"
+	git init
+	get_user
+	get_email
+	git config --global pull.rebase false
+	git config --global user.name "$guser"
+	git config --global user.email "$EMAIL"
+	git config --system core.editor nvim
+	git config --global push.default simple
+	git remote set-url origin "$purl/$guser/$project"
+	git add .
+	get_commit
+	git push -u
+	tput setaf 6
+	echo -e "\n\n\tYa todo esta configurado y se hizo el primer push\n\n\t"
+	tput sgr 0
+	sleep 2 &&
+		chmod -x ./repoFrom-local.sh
+}
+
+main

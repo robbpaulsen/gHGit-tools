@@ -28,15 +28,19 @@ This script will ask you for 2 parameters, the name you want to give to your pro
 
 # Creating your github repository approach 2
 
-## repoFrom-local.sh
+## `repoFrom-local.sh``
 
-Approach 1 creates the repository from 0, that means you don't have a README.md, initialize a local direcotry as your git project with `git init` and or 0 commits have been made, approach 2 will create a repository taking into account the name of the directory you are in that moment and directory contains all your project files and you are all set to commit and push for the first time.
+Approach 1 creates the repository from 0, that means you don't have a README.md, initialize a local directory as your git project with `git init` and or 0 commits have been made, approach 2 will create a repository taking into account the name of the directory you are in that moment and directory contains all your project files and you are all set to commit and push for the first time.
 
-#### TAKE INTO ACCOUNT THAT COMMITING SEVERAL TIMES WITHOUT PUSHING WILL EFF THE EFF-OUT OF YOUR PROJECT AND WILL HAVE A VERY BAD TIME STASHING, REBASING, MERGING AND HOOPE GOD WILL BE ON YOUR SIDE ON THAT DAY.
+#### TAKE INTO ACCOUNT THAT COMMITING SEVERAL TIMES WITHOUT PUSHING WILL EFF THE EFF-OUT OF YOUR PROJECT AND WILL HAVE A VERY BAD TIME STASHING, REBASING, MERGING AND HOPE GOD WILL BE ON YOUR SIDE ON THAT DAY.
 
 # `setup-ssh.sh`
 
 This script will create an ed25519 ssh key with a custom identifier/name and will store the key pair under your `$HOME/.ssh` directory
+
+# `setup-ssh2.sh`
+
+The same as 1, but uses mainly functions made
 
 # `git-setup.sh`
 
@@ -44,4 +48,10 @@ This script will configure the most essential parameters to quickly clone your p
 
 # `up.sh`
 
-This script will be the only one that is gonna be reused every time you push any new line of code or changes within your project
+This script will be the only one that is gonna be reused every time you push any new line of code or changes within your project.
+
+# `one-git`
+
+## HAVE NOT TESTED IT YET!!
+
+This scripts attempts to do what all the other scripts do but from one source, so it may end up not working since it's a very big `if, elif, else` nested thing and whenever anything get to that point is a better a idea to approach project with another language like python.
