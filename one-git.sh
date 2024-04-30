@@ -39,15 +39,21 @@ purl=https://github.com
 project="$(basename $(pwd))"
 
 # Functions
+
+ctrl_c() {
+	tput setaf 3
+	echo "Saliendo ..."
+	tput sgr 0
+	exit
+}
 trap ctrl_c INT
 
-function ctrl_c() {
-	exit_script
-}
-
-function exit_script() {
+exit_script() {
+	clear
+	echo ""
+	tput setaf 3
 	echo -e "${sign_good} Exiting script"
-	tput cnorm
+	tput sgr 0
 	exit 0
 }
 
@@ -81,7 +87,7 @@ get_ssh_key() {
 	eval "$(ssh-agent -s)"
 	ssh-add "$keyHome"/"$key"_ed25519
 	${green}
-	echo -e "\n\n${sign_good} \n\nAhora dirigete a tu cuenta y agrega la llave, este proceso \nno es posible hacerlo aun desde la terminal\n\n"
+	echo -e "\n\t${sign_good} Ahora dirigete a tu cuenta y agrega la llave, este proceso no es posible \nhacerlo aun desde la terminal."
 	${nc}
 }
 
@@ -104,13 +110,8 @@ get_description() {
 }
 
 create_repo() {
-	echo ""
-	echo ""
 	get_project
-	echo ""
-	echo ""
 	get_description
-	echo ""
 	echo ""
 	gh repo create "$pname" --add-readme --description "$desc" \
 		--public --clone
@@ -137,14 +138,12 @@ get_user() {
 fromLocal_2Remote() {
 	clear
 	echo ""
-	echo ""
 	echo -e "\n${YELLOW}[!]${NORMAL}${LRED} ESTE SCRIPT SOLO DEBE DE SER USADO UNA SOLA VEZ, AL FINAL\nDEJARA DE SER EJECUTABLE PARA PREVENIR ACCIDEDNTES!${NORMAL}"
+	echo ""
 	get_project
 	git init
 	git config --global pull.rebase false
 	get_user
-	echo ""
-	echo ""
 	git config --global user.name "$guser"
 	get_email
 	git config --global user.email "$EMAIL"
@@ -152,13 +151,10 @@ fromLocal_2Remote() {
 	git config --global push.default simple
 	git remote set-url origin "$purl/$guser/$project"
 	git add .
-	echo ""
-	echo ""
 	get_commit
 	git push -u
 	tput setaf 6
-	echo -e "\n\n\tYa todo esta configurado y se hizo el primer push\n\n\t"
-	echo ""
+	echo -e "\n\tYa todo esta configurado y se hizo el primer push\n"
 	echo ""
 	tput sgr 0
 }
@@ -184,7 +180,7 @@ git_pull() {
 
 add_files() {
 	${yellow}
-	echo -e "\n\n${sign_info} Se va a agregar al stage todas las modificaciones\n\n"
+	echo -e "\n${sign_info} Agregaran al stage todas las modificaciones\n"
 	${nc}
 	git add .
 }
@@ -210,61 +206,52 @@ get_commit() {
 
 just_push() {
 	${green}
-	echo -e "\n\n${sign_info} Se Actualizara el proyecto en el sitio con \nlos nuevos cambios\n\n"
+	echo -e "\n${sign_info} Se Actualizara el proyecto en el sitio con \nlos nuevos cambios."
 	${nc}
 	git push
 }
 
 add_commit_push() {
 	${green}
-	echo -e "\n\n${sign_info} Se Actualizara el proyecto en el sitio con \nlos nuevos cambios\n\n"
+	echo -e "\n${sign_info} Se Actualizara el proyecto en el sitio con \nlos nuevos cambios."
 	${nc}
 	git pull
 	add_files
 	get_commit
-	git push
+	just_push
 }
 
 menu() {
 	clear
 	while true; do
-		echo ""
-		echo ""
-		tput setaf 6
-		echo -e "\n1 [+] Generar una nueva llave SSH  para tu proyecto\n"
-		echo ""
-		echo ""
-		echo -e "\n2 [+] Generar Repositorio en Remoto, no en local\n"
-		echo ""
-		echo ""
-		echo -e "\n3 [+] Generar de tu proyecto local un repositorio en tu remoto GitHub\n"
-		echo ""
-		echo ""
-		echo -e "\n4 [+] Sincronizarse con remoto unicamente\n"
-		echo ""
-		echo ""
-		echo -e "\n5 [+] Agregar los cambios recien hechos\n"
-		echo ""
-		echo ""
-		echo -e "\n6 [+] Hacer un Commit\n"
-		echo ""
-		echo ""
-		echo -e "\n7 [+] Hacer push Simple\n"
-		echo ""
-		echo ""
-		echo -e "\n8 [+] Hacer un add, commit y Push\n"
-		tput sgr 0
-		tput setaf 1
-		echo -e "\n9 [!] Salir\n"
-		echo ""
-		echo ""
-		tput sgr 0
-		echo ""
+		clear
 		echo ""
 		tput setaf 3
-		read -p "Elige la opcion deseada: " numero
+		echo -e "\n\t$1 1 [+] Generar una nueva llave SSH  para tu proyecto."
+		echo ""
+		echo -e "\n\t$2 2 [+] Generar Repositorio en Remoto, no en local."
+		echo ""
+		echo -e "\n\t$3 3 [+] Generar de tu proyecto local un repositorio en tu remoto GitHub."
+		echo ""
+		echo -e "\n\t$4 4 [+] Sincronizarse con remoto unicamente."
+		echo ""
+		echo -e "\n\t$5 5 [+] Agregar los cambios recien hechos."
+		echo ""
+		echo -e "\n\t$6 6 [+] Hacer un Commit."
+		echo ""
+		echo -e "\n\t$7 7 [+] Hacer push Simple."
+		echo ""
+		echo -e "\n\t$8 8 [+] Hacer un add, commit y Push."
 		tput sgr 0
 		echo ""
+		tput setaf 1
+		echo -e "\n\t$9 9 [!] Salir\n"
+		echo ""
+		tput sgr 0
+		echo ""
+		tput setaf 8
+		read -p "Elige la opcion deseada: " numero
+		tput sgr 0
 		echo ""
 		case $numero in
 		1)
@@ -296,7 +283,7 @@ menu() {
 			;;
 		*)
 			tput setaf 1
-			echo -e "\n[!] La opcion deseada no existe, intentar de nuevo [!]\n"
+			echo -e "\n\t[!] La opcion deseada no existe, intentar de nuevo [!]"
 			tput sgr 0
 			;;
 		esac

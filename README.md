@@ -52,6 +52,8 @@ This script will be the only one that is gonna be reused every time you push any
 
 # `one-git`
 
+`onee-gi t` unifica todos los scripts en el proyecto para operar solo de un ejecutable, aun que no tiene mucho sentido el tener todo en ucsolo lugar, cuando estas apenas comenzando a usar github, compartir proyectos y participar en otros todo usuario quier ver todas las opciones y compararlas para saber que es lo que quiere hacer, ya con algunas semanas el mismo usuario va a modularizar todo este script a como mas le convenga y facilite su forma de trabajo.
+
 ## HAVE NOT TESTED IT YET!!
 
 This scripts attempts to do what all the other scripts do but from one source, so it may end up not working since it's a very big `if, elif, else` nested thing and whenever anything get to that point is a better a idea to approach project with another language like python.
