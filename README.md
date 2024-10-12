@@ -66,7 +66,7 @@ ___
 
 `one-git` combines all the simplified functions into an interactive menu to choose what the user wants to do.
 Before execuritn arbitrary code/scripts on your machine please read the source code, maybe it will go and do
-something you might not like. The other little detail is that I english is not my native language
+something you might not like. The other little detail is that english is not my native language
 and most likely I name things that will not make sense to you, so again please read the source bash scripts.
 
 ___
